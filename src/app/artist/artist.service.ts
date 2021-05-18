@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityNotFound } from '../../errors/errors';
-import { DeepPartial, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Artist } from './artist.entity';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class ArtistService {
     return this.Artists.save(artist);
   }
 
-  async update(id: number, artist: DeepPartial<Artist>): Promise<void> {
+  async update(id: number, artist: Partial<Artist>): Promise<void> {
     await this.findOne(id);
     await this.Artists.save({ id: id, ...artist });
   }
