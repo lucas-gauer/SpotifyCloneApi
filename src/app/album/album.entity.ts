@@ -29,6 +29,6 @@ export class Album {
   @ManyToMany(() => Artist, (artist) => artist.albums)
   artists: Artist[];
 
-  @OneToMany(() => Track, (song) => song.album)
-  songs: Track[];
+  @OneToMany(() => Track, (track) => track.album)
+  track: Track[];
 }

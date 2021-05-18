@@ -11,32 +11,32 @@ import {
 import { Track } from './track.entity';
 import { TrackService } from './track.service';
 
-@Controller('song')
+@Controller('track')
 export class TrackController {
-  constructor(private readonly Songs: TrackService) {}
+  constructor(private readonly Tracks: TrackService) {}
 
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.Songs.findOne(id);
+    return this.Tracks.findOne(id);
   }
 
   @Get()
   async findAll() {
-    return this.Songs.findAll();
+    return this.Tracks.findAll();
   }
 
   @Post()
   async create(@Body() body: Track) {
-    return await this.Songs.create(body);
+    return await this.Tracks.create(body);
   }
 
   @Put(':id')
   async update(@Body() body: Track, @Param('id', ParseIntPipe) id: number) {
-    return await this.Songs.update(id, body);
+    return await this.Tracks.update(id, body);
   }
 
   @Delete(':id')
   async delete(@Param('id', ParseIntPipe) id: number) {
-    return await this.Songs.remove(id);
+    return await this.Tracks.remove(id);
   }
 }

@@ -8,30 +8,30 @@ import { Track } from './track.entity';
 export class TrackService {
   constructor(
     @InjectRepository(Track)
-    private Songs: Repository<Track>,
+    private Tracks: Repository<Track>,
   ) {}
 
   findAll(): Promise<Track[]> {
-    return this.Songs.find();
+    return this.Tracks.find();
   }
 
   async findOne(id: number): Promise<Track> {
-    const song = await this.Songs.findOne(id);
-    if (!song) throw new EntityNotFound('Song');
-    return song;
+    const tracks = await this.Tracks.findOne(id);
+    if (!tracks) throw new EntityNotFound('Track');
+    return tracks;
   }
 
-  async create(song: Track): Promise<Track> {
-    return this.Songs.save(song);
+  async create(track: Track): Promise<Track> {
+    return this.Tracks.save(track);
   }
 
-  async update(id: number, song: Partial<Track>): Promise<void> {
+  async update(id: number, track: Partial<Track>): Promise<void> {
     await this.findOne(id);
-    await this.Songs.save({ id: id, ...song });
+    await this.Tracks.save({ id: id, ...track });
   }
 
   async remove(id: number): Promise<void> {
     await this.findOne(id);
-    await this.Songs.delete(id);
+    await this.Tracks.delete(id);
   }
 }
