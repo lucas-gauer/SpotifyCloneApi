@@ -1,6 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  OneToMany,
+} from 'typeorm';
 import { AlbumType } from './album-type.enum';
 import { Artist } from '../artist/artist.entity';
+import { Song } from '../song/song.entity';
 
 @Entity()
 export class Album {
@@ -22,5 +29,6 @@ export class Album {
   @ManyToMany(() => Artist, (artist) => artist.albums)
   artists: Artist[];
 
-  songs: any[]; // TODO
+  @OneToMany(() => Song, (song) => song.album)
+  songs: Song[];
 }
