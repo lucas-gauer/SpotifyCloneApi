@@ -22,6 +22,7 @@ export class AlbumService {
   }
 
   async create(album: Album): Promise<Album> {
+    // TODO It should not be possible to add an album without artists
     return this.Albums.save(album);
   }
 

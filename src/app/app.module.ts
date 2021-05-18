@@ -6,6 +6,8 @@ import { Artist } from './artist/artist.entity';
 import { ArtistModule } from './artist/artist.module';
 import { Album } from './album/album.entity';
 import { AlbumModule } from './album/album.module';
+import { Track } from './track/track.entity';
+import { TrackModule } from './track/track.module';
 
 @Module({
   imports: [
@@ -13,15 +15,15 @@ import { AlbumModule } from './album/album.module';
       type: 'mariadb',
       host: 'localhost',
       port: 3306,
-      username: '',
-      password: '',
+      username: 'gauer', // TODO .env
+      password: 'qweasdzxc', // TODO .env
       database: 'spotify',
-      entities: [Artist, Album],
-      synchronize: true, //! remove for production
-      timezone: 'Z',
+      entities: [Album, Artist, Track],
+      synchronize: true, //! remove for production // TODO .env
     }),
-    ArtistModule,
     AlbumModule,
+    ArtistModule,
+    TrackModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { AlbumType } from './album-type.enum';
 import { Artist } from '../artist/artist.entity';
-import { Song } from '../song/song.entity';
+import { Track } from '../track/track.entity';
 
 @Entity()
 export class Album {
@@ -29,6 +29,6 @@ export class Album {
   @ManyToMany(() => Artist, (artist) => artist.albums)
   artists: Artist[];
 
-  @OneToMany(() => Song, (song) => song.album)
-  songs: Song[];
+  @OneToMany(() => Track, (song) => song.album)
+  songs: Track[];
 }
