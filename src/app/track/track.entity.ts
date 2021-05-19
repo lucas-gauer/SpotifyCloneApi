@@ -18,6 +18,6 @@ export class Track {
   @Column({ type: 'varchar', length: 128 })
   path: string;
 
-  @ManyToOne(() => Album, (album) => album.track, { nullable: false })
+  @ManyToOne(() => Album, (album) => album.tracks, { nullable: false })
   album: Album;
 }
