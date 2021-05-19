@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EntityNotFound } from '../../errors/errors';
 import { Repository } from 'typeorm';
+
+import { EntityNotFound } from '../../errors/errors';
+
 import { Artist } from './artist.entity';
+import { ArtistInput } from './artist.input';
 
 @Injectable()
 export class ArtistService {
@@ -21,11 +24,11 @@ export class ArtistService {
     return artist;
   }
 
-  async create(artist: Artist): Promise<Artist> {
+  async create(artist: ArtistInput): Promise<Artist> {
     return this.Artists.save(artist);
   }
 
-  async update(id: number, artist: Partial<Artist>): Promise<void> {
+  async update(id: number, artist: Partial<ArtistInput>): Promise<void> {
     await this.findOne(id);
     await this.Artists.save({ id: id, ...artist });
   }

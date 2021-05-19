@@ -7,8 +7,12 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UsePipes,
 } from '@nestjs/common';
-import { Artist } from './artist.entity';
+
+import { ValidateCreate, ValidateUpdate } from '../../validation/pipes';
+
+import { ArtistInput } from './artist.input';
 import { ArtistService } from './artist.service';
 
 @Controller('artist')
@@ -26,12 +30,17 @@ export class ArtistController {
   }
 
   @Post()
-  async create(@Body() body: Artist) {
+  @UsePipes(ValidateCreate)
+  async create(@Body() body: ArtistInput) {
     return await this.Artists.create(body);
   }
 
   @Put(':id')
-  async update(@Body() body: Artist, @Param('id', ParseIntPipe) id: number) {
+  @UsePipes(ValidateUpdate)
+  async update(
+    @Body() body: Partial<ArtistInput>,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
     return await this.Artists.update(id, body);
   }
 
